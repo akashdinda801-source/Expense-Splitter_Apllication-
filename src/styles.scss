@@ -1,0 +1,51 @@
+// Approach 1: global stylesheet with CSS custom properties (design tokens)
+:root {
+  --paper: #f2f4fb;
+  --card: #ffffff;
+  --ink: #1b1f5e;
+  --ink-soft: #5b5f8f;
+  --line: #dde1f2;
+  --brand: #3e43d8;
+  --owed: #12a594;
+  --owe: #e5484d;
+  --amber: #f5a524;
+  --radius: 18px;
+  --display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --body: 'Figtree', system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--body); background: var(--paper); color: var(--ink); line-height: 1.5; }
+h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: -0.02em; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; }
+h2 { font-size: 1.35rem; font-weight: 800; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+.page { display: grid; gap: 1.5rem; }
+.muted { color: var(--ink-soft); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; }
+.grid { display: grid; gap: 1rem; }
+.grid.stats { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
+
+.btn {
+  background: var(--brand); color: #fff; border: 0; border-radius: 12px;
+  padding: .7rem 1.1rem; font-weight: 600; cursor: pointer; transition: background .15s;
+  &:hover { background: #2f34b8; }
+  &.ghost { background: transparent; color: var(--brand); border: 1px solid var(--line); &:hover { background: var(--paper); } }
+  &.danger { background: var(--owe); &:hover { background: #c93338; } }
+}
+label { display: grid; gap: .3rem; font-size: .9rem; font-weight: 500; }
+input, select {
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: .65rem .8rem; width: 100%;
+  &:focus { border-color: var(--brand); }
+}
+.chip {
+  border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: .35rem .85rem; cursor: pointer; font-size: .9rem;
+  &.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+}
+.pos { color: var(--owed); } .neg { color: var(--owe); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
